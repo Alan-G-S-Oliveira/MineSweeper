@@ -1,0 +1,9 @@
+Lembra de usar o save_context no começo da função e o restore_context antes de retornar;
+Comenta cada linha, explicando o que ela faz ou mostrando o equivalente em C;
+Quando for chamar uma função, lembre-se de passar os parâmetros para os registradores $a0, $a1, $a2 ou $a3;
+No início da função passe os valores dos registradores $a para os registradores $s;
+Antes de chamar alguma função verifique se todos os valores importantes estão nos registradores $s,
+caso contrário não é possível garantir que eles continuarão intactos após a execução da função;
+De preferência use $v0 para guardar os valores de retorno, se usar o $v1 especifique que o usou (Na minha parte
+do código eu assumi que as funções chamadas retornariam o valor em $v0, logo se usar $v1 fale para eu mudar);
+Seja simples e não invente coisas complicadas.
