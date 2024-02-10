@@ -3,7 +3,7 @@
 .globl play
 
 play:
-	save_context	#Salva os valores dos resgitradores
+	save_context	#Salva os valores dos resgitradores na memória
 	
 	#Move os valores dos registradores de argumentos da função para os registradores do tipo $s
 	move $s0, $a0	#$s0 recebe o começo da matriz
@@ -15,19 +15,19 @@ play:
 	sll $t1, $s2, 2		#A Coordenada j é multiplicada por 4
 	add $t0, $t0, $t1	#As duas coordenadas são somadas para calcular a posição da célula da matriz na memória
 	
-	add $t1, $t0, $s0	#É calculado o endereço do número em relação ao começo da matriz
-	lw $s3, 0($t1)		#O número na posição calculada é carregado para o registrador $s3
+	add $s3, $t0, $s0	#É calculado o endereço do número em relação ao começo da matriz
+	lw $s4, 0($s3)		#O número na posição calculada é carregado para o registrador $s4
 	
 	addi $t2, $0, -1	#É atribuido o valor -1 ao registtrador $t2
-	bne $t2, $s3, else1	#if(board[row][column] == -1)
+	bne $t2, $s4, else1	#if(board[row][column] == -1)
 	move $v0, $0		#Move o valor de retorno para $v0
 	restore_context		#Restaura os valores dos registradores
-	j $ra			#return 0
+	jr $ra			#return 0
 	
 else1:
 
 	addi, $t2, $0, -2	#É atribuidoo valor -2 ao registrador $t2
-	bne $t2, $s3, else2	#if(board[row][column] == -2)
+	bne $t2, $s4, else2	#if(board[row][column] == -2)
 	
 	#Move os argumentos para a chamada da função countAdjacentBombs
 	move $a0, $s0
@@ -52,4 +52,4 @@ else2:
 restore_context		#Restaura os valores dos registradores
 
 addi $v0, $0, 1		#Carrega o valor de retorno em $v0
-j $ra			#return 1
+jr $ra			#return 1
