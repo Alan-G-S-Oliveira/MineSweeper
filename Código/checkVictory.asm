@@ -31,9 +31,11 @@ mul $t4, $t0, $t0 #multiplica o size pelo zise
 li $t5, BOMB_COUNT #pega o valor do BOMB_COUNT
 sub $t4, $t4, $s5 #sub o valor do quadrado do size com o BOMB_COUNT
 blt $s1, $4, good_end #leva para o final bom que e vencer o jogo 
+restore_context #restaura os $s
 li $v0, 0 #volta 0
 jr $ra #final ruín 
 good_end: #entra no final bom
+restore_context #restaura os $s
 li $v0, 1 #volta 1
 jr $ra #final bom :)
 lar_c: #entra no almento do contador
