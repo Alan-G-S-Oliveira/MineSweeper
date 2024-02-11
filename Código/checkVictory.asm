@@ -30,14 +30,14 @@ end_for_i: #fim do laÃ§o
 mul $t4, $t0, $t0 #multiplica o size pelo zise
 li $t5, BOMB_COUNT #pega o valor do BOMB_COUNT
 sub $t4, $t4, $t5 #sub o valor do quadrado do size com o BOMB_COUNT
-blt $s1, $t4, bad_end #leva para o final bom que e vencer o jogo 
+blt $s1, $t4, bad_end #leva para o final ruín que e perde o jogo 
 restore_context #restaura os $s
 li $v0, 1 #volta 1
-jr $ra #final ruï¿½n 
-bad_end: #entra no final bom
+jr $ra #final bom :)
+bad_end: #entra no final ruín
 restore_context #restaura os $s
 li $v0, 0 #volta 0
-jr $ra #final bom :)
+jr $ra #final ruín :(
 lar_c: #entra no aumento do contador
 addi $s1, $s1, 1 #add 1 no cont
 j volta #volta para onde parou
