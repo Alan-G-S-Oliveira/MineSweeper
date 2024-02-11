@@ -18,7 +18,7 @@ play:
 	add $s3, $t0, $s0	#É calculado o endereço do número em relação ao começo da matriz
 	lw $s4, 0($s3)		#O número na posição calculada é carregado para o registrador $s4
 	
-	addi $t2, $0, -1	#É atribuido o valor -1 ao registtrador $t2
+	addi $t2, $0, -1	#É atribuido o valor -1 ao registrador $t2
 	bne $t2, $s4, else1	#if(board[row][column] == -1)
 	move $v0, $0		#Move o valor de retorno para $v0
 	restore_context		#Restaura os valores dos registradores

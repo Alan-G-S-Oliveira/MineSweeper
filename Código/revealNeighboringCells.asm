@@ -10,33 +10,39 @@ revealNeighboringCells:
 	subi $s3, $s1, 1 #inicio do for i=x-1
 	beginning_for_x:
 	addi $t0, $s1, 1
-	bge $s3, $t0, end_for_x
+	bgt $s3, $t0, end_for_x
 	
-	subi $s4, $s2, 1 #inicio do for i=y-1
+	subi $s4, $s2, 1 #inicio do for j=y-1
 	beginning_for_y:
 	addi $t1, $s2, 1
-	bge $s4, $t1, end_for_y
+	bgt $s4, $t1, end_for_y
 	
-	blt $s3, $zero, cont_for_y #se for menor que 0 não entra
+	blt $s3, $zero, cont_for_y #se for menor que 0 nï¿½o entra
 	li $t2,SIZE #guarda o valor de size
-	bge $s3, $t2, cont_for_y #se for maior que size não entra 
-	blt $s4, $zero, cont_for_y  #se for maior que size não entra
-	bge $s4, $t2, cont_for_y #se for maior que size não entra
-	sll $t3, $s3, 5		#A Coordenada i é multiplicada por 32, que é igual a 8 x 4 
-	sll $t4, $s4, 2		#A Coordenada j é multiplicada por 4
-	add $t3, $t0, $t1	#As duas coordenadas são somadas para calcular a posição da célula da matriz na memória
-	add $s5, $t3, $s0	#Soma com o inicio só pra ter certesa 
-	lw $t3, 0($s5)		#Pega o valor da possisão
-	bne $t3, -2, cont_for_y #se for diferente de -2 não entra
-	move $a1, $s3 #pega o valor de $s3 e coloca em $a1 para chamar a funsão
-	move $a2, $s4 #pega o valor de $s4 e coloca em $a2 para chamar a funsão
-	countAdjacentBombs #chama a funsão countAdjacentBombs
+	bge $s3, $t2, cont_for_y #se for maior que size nï¿½o entra 
+	blt $s4, $zero, cont_for_y  #se for maior que size nï¿½o entra
+	bge $s4, $t2, cont_for_y #se for maior que size nï¿½o entra
+	sll $t3, $s3, 5		#A Coordenada i ï¿½ multiplicada por 32, que ï¿½ igual a 8 x 4 
+	sll $t4, $s4, 2		#A Coordenada j ï¿½ multiplicada por 4
+	add $t3, $t3, $t4	#As duas coordenadas sï¿½o somadas para calcular a posiï¿½ï¿½o da cï¿½lula da matriz na memï¿½ria
+	add $s5, $t3, $s0	#Soma com o inicio sï¿½ pra ter certesa 
+	lw $t3, 0($s5)	
+	li $t8, -2	#Pega o valor da possisï¿½o
+
+	bne $t3, $t8, cont_for_y #se for diferente de -2 nï¿½o entra
+
+	move $a0, $s0
+	move $a1, $s3 #pega o valor de $s3 e coloca em $a1 para chamar a funsï¿½o
+	move $a2, $s4 #pega o valor de $s4 e coloca em $a2 para chamar a funsï¿½o
+	jal countAdjacentBombs #chama a funsï¿½o countAdjacentBombs
 	sw $v0, 0($s5) #board[i][j] = x;
-	bne $v0, $zero, cont_for_y #Se for diferente de 0 sai
-	move $a0, $s0 #joga os valores de $s0, $s1 e $s2 na funsão revealNeighboringCells
+	move $t7, $v0
+
+	bne $t7, $zero, cont_for_y #Se for diferente de 0 sai
+	move $a0, $s0 #joga os valores de $s0, $s1 e $s2 na funsï¿½o revealNeighboringCells
 	move $a1, $s3
 	move $a2, $s4
-	revealNeighboringCells
+	jal revealNeighboringCells
 	
 	cont_for_y:
 	addi $s4, $s4, 1 #add um no y e retorna o for
@@ -46,7 +52,7 @@ revealNeighboringCells:
 	addi $s3, $s3, 1
 	j beginning_for_x
 	
-	end_for_x: #restaura as variaveis e finaliza a funsão
+	end_for_x: #restaura as variaveis e finaliza a funsï¿½o
 	restore_context
 	jr $ra
 	
