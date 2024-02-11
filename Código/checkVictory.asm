@@ -11,7 +11,7 @@ li $s3, 0 #cria o j
 beginning_for_i: #inicio o primeiro for
 li $t0, SIZE	#pego o size
 bge $s2, $t0,end_for_i #condis�o de saida do for
-
+move $s3, $zero
 beginning_for_j: #inicio o segundo for
 bge $s3, $t0,end_for_j #condis�o de saida do for
 sll $t1, $s2, 5		#A Coordenada i � multiplicada por 32, que � igual a 8 x 4 
