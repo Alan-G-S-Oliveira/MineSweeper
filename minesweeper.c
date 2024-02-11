@@ -24,7 +24,7 @@
     * Note: This code was created by Ramon Nepomuceno for educational purposes.
     * Feel free to modify and distribute it for educational use.
     *
-    * 
+    *
     */
 
     #include <stdio.h>
@@ -52,6 +52,7 @@
                 row = rand() % SIZE;
                 column = rand() % SIZE;
             } while (board[row][column] == -1);
+            printf("%d %d\n", row, column);
             board[row][column] = -1; // -1 means bomb present
         }
     }

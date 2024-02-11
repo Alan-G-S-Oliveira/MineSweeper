@@ -17,9 +17,11 @@ plantBombs:
 	do_cb:											# do {
 	li $v0, 42
 	syscall 
-	move $s2, $a0  							# row = rand() % SIZE;
+	move $s2, $a0  
+	move $t8, $s2						# row = rand() % SIZE;
 	syscall 
-	move $s3, $a0  							# column = rand() % SIZE;
+	move $s3, $a0  	
+	move $t9, $s3				# column = rand() % SIZE;
 	sll $t0, $s2, 5
 	sll $t1, $s3, 2
 	add $t2, $t0, $t1
@@ -28,6 +30,14 @@ plantBombs:
 	li $t2, -1
 	beq $t2, $t1, do_cb #  while (board[row][column] == -1);
 	sw $t2,0 ($t0)			#  board[row][column] = -1; // -1 means bomb present
+	move $a0, $t8
+	li $v0, 1
+	syscall
+
+	move $a0, $t9
+	li $v0, 1
+	syscall
+
 	addi $s1, $s1, 1    
 	j begin_for_i_pb
 	end_for_i_pb:
