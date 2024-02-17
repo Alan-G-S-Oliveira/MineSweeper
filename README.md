@@ -3,4 +3,5 @@ O projeto envolve a tradução do jogo MineSweeper da linguagem C para Assembly 
 
 Equipe:
 Alan Gabriel Silva Oliveira
+
 Pedro da Silva Viana
