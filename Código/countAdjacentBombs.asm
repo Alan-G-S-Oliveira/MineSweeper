@@ -6,8 +6,8 @@ countAdjacentBombs:
 	save_context	#Salva os valores dos registradores na memória
 	
 	move $s0, $a0	#$s0 recebe o começo da matriz
-	move $s1, $a1	#$s1 recebe a coordenada i
-	move $s2, $a2	#$s2 recebe a coordenada 
+	move $s1, $a1	#$s1 recebe row
+	move $s2, $a2	#$s2 recebe column
 	
 	move $s3, $0	#count = 0
 	li $t5, SIZE
