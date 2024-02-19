@@ -30,13 +30,6 @@ plantBombs:
 	li $t2, -1
 	beq $t2, $t1, do_cb #  while (board[row][column] == -1);
 	sw $t2,0 ($t0)			#  board[row][column] = -1; // -1 means bomb present
-	move $a0, $t8
-	li $v0, 1
-	syscall
-
-	move $a0, $t9
-	li $v0, 1
-	syscall
 
 	addi $s1, $s1, 1    
 	j begin_for_i_pb
